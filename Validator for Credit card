@@ -1,0 +1,35 @@
+#include<iostream>
+#include<string>
+bool isValidCreditCard(const std::string&cardNumber){
+ int nDigits=cardNumber.length();
+ int sum=0;
+ bool isSecond=false;
+ for(int i=nDigits-1;i>=0;--i){
+ int digit=cardNumber[i]-'0';
+ if(isSecond)
+ {
+ digit*=2;
+ if(digit>9)
+ {
+  digit-=9;
+ }
+ }
+ sum+=digit;
+ isSecond=!isSecond;
+ }
+ return(sum%10==0);
+}
+int main()
+{
+                              system("cls");
+ std::string cardNumber;
+ std::cout<<"Enter credit card number:";
+ std::cin>>cardNumber;
+ if(isValidCreditCard(cardNumber))
+ {
+ std::cout<<"The credit card number is valid."<<std::endl;
+ }else{
+std::cout<<"The credit card number is invalid."<<std::endl;
+ }
+ return 0;
+}
